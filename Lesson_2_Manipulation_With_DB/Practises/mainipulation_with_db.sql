@@ -1,0 +1,1 @@
+SELECT * FROM manipulation_with_db.contacts;
