@@ -7,45 +7,16 @@ create table Positions(
 	position_id int primary key,
     position_name varchar(50)
 );
-
-insert into Positions(position_id, position_name)
-value
-	(1,'Staff'),
-	(2,'Captain'),
-	(3,'Supevisor'),
-	(4,'Manager'),
-	(5,'Director'),
-	(6,'Genaral Manager')
-;
     
 create table Employee_level(
 	employee_level_id int primary key,
 	employess_level varchar(15)
 );
 
-insert into Employee_level(employee_level_id, employess_level)
-value
-	(1,'A1'),
-	(2,'A2'),
-	(3,'B1'),
-	(4,'B2'),
-	(5,'C1'),
-	(6,'C2')
-;
-
 create table Department(
 	department_id int primary key,
     department_name varchar(50)
 );
-
-insert into Department(department_id, department_name)
-value
-	(1,'Sale & Marketing'),
-	(2,'Financial'),
-	(3,'Kitchen'),
-	(4,'HouseAtendent'),
-	(5,'F&B'),
-	(6,'FO');
 
 create table RentalType(
 	rental_type_id int primary key,
@@ -53,23 +24,10 @@ create table RentalType(
     price double
 );
 
-insert into RentalType(rental_type_id, rental_type_name, price)
-value
-	(1,'Day',200000.00),
-	(2,'Month',6000000.00),
-	(3,'Year',1000000000.00),
-	(4,'Hour',100000.00);
-
 create table Servicetype(
 	service_type_id int auto_increment primary key,
     service_type_name varchar(50)
 );
-
-insert into Servicetype(service_type_id, service_type_name)
-value
-	(1,'Villa'),
-	(2,'House'),
-	(3,'Room');
     
 create table Employees(
 	employee_id int auto_increment primary key,
@@ -88,20 +46,10 @@ create table Employees(
 	foreign key(department_id) references Department(department_id)
 );
 
-
-
 create table CustomerType(
 	customer_type_id int  primary key,
     customer_type_name varchar(50)
 );
-
-insert into CustomerType(customer_type_id, customer_type_name)
-value
-	(1,'Vip'),
-	(2,'Gold'),
-	(3,'Deluxe'),
-	(4,'Diamond'),
-	(5,'Normal');
 
  create table Customers(
 	customer_id int auto_increment primary key,
@@ -136,14 +84,6 @@ value
 	unit int,
     availability_status varchar(50)
  );
- 
- insert into AccompaniedService(accompanied_service_id, accompanied_service_name, price, unit, availability_status)
-value
-	(1,'Karaoke',100000.00,1, 'On'),
-	(2,'Car',200000.00,2, 'Off'),
-	(3,'Drink',300000.00,3, 'On'),
-	(4,'Food',600000.00,2, 'On'),
-	(5,'Spa',200000.00,2, 'On');
     
 create table Contracts(
 	contract_id int auto_increment not null primary key,
@@ -159,7 +99,7 @@ create table Contracts(
 	foreign key(service_id) references Services(service_id)
 );
 
- 
+
  create table ContractDetail(
 	contract_detail_id int auto_increment primary key,
     contract_id int,
@@ -168,8 +108,75 @@ create table Contracts(
     foreign key (contract_id) references Contracts(contract_id),
     foreign key (accompanied_service_id) references AccompaniedService(accompanied_service_id)
  );
--- Task 1.	Thêm mới thông tin cho tất cả các bảng có trong CSDL để có thể thõa mãn các yêu cầu bên dưới.
+-- Task 1.	Thêm mới thông tin cho tất cả các bảng có trong CSDL để có thể thõa mãn các yêu cầu bên dưới.\
 
+insert into Positions(position_id, position_name)
+value
+	(1,'Staff'),
+	(2,'Captain'),
+	(3,'Supevisor'),
+	(4,'Manager'),
+	(5,'Director'),
+	(6,'Genaral Manager')
+;
+
+insert into Employee_level(employee_level_id, employess_level)
+value
+	(1,'A1'),
+	(2,'A2'),
+	(3,'B1'),
+	(4,'B2'),
+	(5,'C1'),
+	(6,'C2')
+;
+
+insert into Department(department_id, department_name)
+value
+	(1,'Sale & Marketing'),
+	(2,'Financial'),
+	(3,'Kitchen'),
+	(4,'HouseAtendent'),
+	(5,'F&B'),
+	(6,'FO');
+    
+insert into RentalType(rental_type_id, rental_type_name, price)
+value
+	(1,'Day',200000.00),
+	(2,'Month',6000000.00),
+	(3,'Year',1000000000.00),
+	(4,'Hour',100000.00);
+    
+insert into Servicetype(service_type_id, service_type_name)
+value
+	(1,'Villa'),
+	(2,'House'),
+	(3,'Room');
+
+insert into CustomerType(customer_type_id, customer_type_name)
+value
+	(1,'Diamond'),
+	(2,'Platinium'),
+	(3,'Gold'),
+	(4,'Silver'),
+	(5,'Member');
+    
+insert into AccompaniedService(accompanied_service_id, accompanied_service_name, price, unit, availability_status)
+value
+	(1,'Karaoke',100000.00,1, 'Availabale'),
+	(2,'Car',200000.00,2, 'Unavailabale'),
+	(3,'Drink',300000.00,3, 'Availabale'),
+	(4,'Food',600000.00,2, 'Availabale'),
+	(5,'Spa',200000.00,2, 'Availabale');
+    
+insert into Services(service_name, area_using, no_of_floor, max_of_customer, rental_fee, rental_type_id, service_type_id, availability_status)
+values
+("Villa Lamark", 700.76, 2, 3, 2000000, 2, 1, "Available"),
+("Villa A",	400.50,	3, 3,	1000000, 2, 1, "Available"),
+("House Lamark", 100.70, 2, 3, 500000, 1, 2, "Not available"),
+("House A", 80.70, 3, 2, 300000, 1, 2, "Available"),
+("Room 312", 70.3, 2, 3, 200000, 2, 1, "Available"),
+("Room 213", 50.4, 1, 2, 290000, 4, 3, "Not available");
+    
 insert into Employees( full_name, position_id, employee_level_id, department_id, date_of_birth, id_card_number, salary, phone_number, email, address) 
 value 
 	('Le Duc Sang', 1, 2, 3, '1992-06-19', 208876544, 12000000.00, 0333576574, 'sangle@gmail.com', '103 Hoang Dieu' ),
@@ -194,6 +201,30 @@ value
 	(1, 'Cao Van Minh', '1992-10-17', 208856459, 0333765651, 'minh_cao@gmail.com', 'Cao Bang' ),
 	(2, 'Nguyen Dang Khoi', '1998-08-24', 218846561, 091763678, 'khoi_nguyen@gmail.com', 'Da Nang' );
     
+    insert into Contracts(employee_id, customer_id, service_id, date_started, date_finished, down_payment, total_payment)
+value
+	(1, 1, 2, '2015-10-16', '2015-10-28', 150000, 1000000),
+	(2, 2, 2, '2016-11-10', '2019-11-15', 100000, 1000000),
+	(3, 3, 1, '2016-12-26', '2016-12-30', 200000, 2000000),
+	(2, 4, 3, '2017-07-12', '2018-07-28', 100000, 10000000),
+	(3, 4, 2, '2017-09-16', '2015-11-20', 200000, 1000000),
+	(2, 2, 4, '2018-01-09', '2018-01-12', 100000, 1000000),
+	(4, 3, 1, '2018-10-16', '2018-10-28', 300000, 1000000),
+	(6, 3, 3, '2019-08-20', '2019-08-25', 100000, 1000000),
+	(7, 6, 2, '2019-11-07', '2019-11-19', 150000, 1000000),
+	(7, 7, 6, '2020-10-16', '2020-10-28', 150000, 1000000),
+	(7, 8, 5, '2021-03-16', '2021-03-20', 300000, 1000000);
+    
+    
+ insert into ContractDetail( contract_id, accompanied_service_id, amount)
+ value
+	(1, 1, 1 ),
+	(2, 2, 2 ),
+	(3, 3, 3 ),
+	(4, 4, 2 ),
+	(5, 5, 3 ),
+	(7, 2, 1 ),
+	(8, 3, 1 );
 -- Task 2.	Hiển thị thông tin của tất cả nhân viên có trong hệ thống có tên bắt đầu là một trong các ký tự “H”, “T” hoặc “K” và có tối đa 15 ký tự.
 select *
 from employees
@@ -207,3 +238,42 @@ where timestampdiff(year, date_of_birth, curdate()) between 18 and 50 and addres
 
 -- 4.	Đếm xem tương ứng với mỗi khách hàng đã từng đặt phòng bao nhiêu lần. Kết quả hiển thị được 
 -- sắp xếp tăng dần theo số lần đặt phòng của khách hàng. Chỉ đếm những khách hàng nào có Tên loại khách hàng là “Diamond”.
+
+select Customers.customer_id, Customers.full_name, Customertype.customer_type_name, COUNT(*) as noOfBooked
+from Customers
+	inner join Customertype on Customers.customer_type_id = Customertype.customer_type_id
+	left join Contracts on Customers.customer_id = Contracts.customer_id
+where
+    Customertype.customer_type_name = 'Diamond'
+group by  customer_id
+ORDER BY noOfBooked;
+
+-- Task 5. Hiển thị IDKhachHang, HoTen, TenLoaiKhach, IDHopDong, TenDichVu, NgayLamHopDong, NgayKetThuc,
+-- TongTien (Với TongTien được tính theo công thức như sau: ChiPhiThue + SoLuong*Gia, với SoLuong
+-- và Giá là từ bảng DichVuDiKem) cho tất cả các Khách hàng đã từng đặt phỏng. (Những Khách hàng 
+--  nào chưa từng đặt phòng cũng phải hiển thị ra).
+
+-- Task 6. Hiển thị IDDichVu, TenDichVu, DienTich, ChiPhiThue, TenLoaiDichVu của tất cả các loại Dịch vụ chưa 
+-- từng được Khách hàng thực hiện đặt từ quý 1 của năm 2019 (Quý 1 là tháng 1, 2, 3).
+
+select Services.service_id, Services.service_name, Services.area_using, Services.rental_fee, Servicetype.service_type_name, contracts.date_started
+from Services
+	inner join Servicetype on Services.service_type_id=Servicetype.service_type_id
+    left join contracts on Services.service_id=contracts.service_id
+where contracts.date_started < '2019-01-01';
+
+-- Task 7. Hiển thị thông tin IDDichVu, TenDichVu, DienTich, SoNguoiToiDa, ChiPhiThue, 
+-- TenLoaiDichVu của tất cả các loại dịch vụ đã từng được Khách hàng đặt 
+-- phòng trong năm 2018 nhưng chưa từng được Khách hàng đặt phòng trong năm 2019.
+
+select Services.service_id, Services.service_name, Services.area_using, Services.max_of_customer, Services.rental_fee, Servicetype.service_type_name, contracts.date_started
+from Services
+	inner join Servicetype on Services.service_type_id=Servicetype.service_type_id
+    left join contracts on Services.service_id= contracts.service_id
+where year(contracts.date_started) = 2018 and Services.service_id not in (
+	select service_id
+    from contracts
+    where year(contracts.date_started)=2019
+)
+order by service_id;
+
