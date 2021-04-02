@@ -195,17 +195,17 @@ value
 	(2, 'Take Uchi Satoru', '1971-01-19', 208876546, 090765659, 'take_uchi@gmail.com', 'Japan' ),
 	(2, 'Ty Colin', '1975-11-28', 207776517, 091767658, 'ty_colin@gmail.com', 'Us' ),
 	(1, 'Nguyen Minh Phuc', '1984-08-19', 209971242, 0333765651, 'phuc_nguyen@gmail.com', 'Ha Noi' ),
-	(2, 'Nguyen Van Ha', '1978-11-19', 208877611, 03457176510, 'ha_nguyen@gmail.com', 'Quang Tri' ),
+	(2, 'Joan', '1920-11-19', 208877611, 03457176510, 'ha_nguyen@gmail.com', 'Quang Tri' ),
 	(3, 'Nguyen Hong Dang', '1988-12-30', 208845540, 090765335, 'dang_nguyen@gmail.com', 'Ha Noi' ),
 	(2, 'Lam Ba Dat', '1987-07-29', 212376541, 094445656, 'ba_dat@gmail.com', 'Sai Gon' ),
 	(1, 'Cao Van Minh', '1992-10-17', 208856459, 0333765651, 'minh_cao@gmail.com', 'Cao Bang' ),
 	(2, 'Nguyen Dang Khoi', '1998-08-24', 218846561, 091763678, 'khoi_nguyen@gmail.com', 'Da Nang' );
     
-    insert into Contracts(employee_id, customer_id, service_id, date_started, date_finished, down_payment, total_payment)
+insert into Contracts(employee_id, customer_id, service_id, date_started, date_finished, down_payment, total_payment)
 value
 	(1, 1, 2, '2015-10-16', '2015-10-28', 150000, 1000000),
 	(2, 2, 2, '2016-11-10', '2019-11-15', 100000, 1000000),
-	(3, 3, 1, '2016-12-26', '2016-12-30', 200000, 2000000),
+	(3, 3, 1, '2019-12-26', '2019-12-30', 200000, 2000000),
 	(2, 4, 3, '2017-07-12', '2018-07-28', 100000, 10000000),
 	(3, 4, 2, '2017-09-16', '2015-11-20', 200000, 1000000),
 	(2, 2, 4, '2018-01-09', '2018-01-12', 100000, 1000000),
@@ -234,7 +234,7 @@ where (full_name regexp '[HKT][a-z]*$') and length(full_name) <=15;
 
 select *
 from customers
-where timestampdiff(year, date_of_birth, curdate()) between 18 and 50 and address in ('Da Nang', 'Quang Tri'); 
+where (timestampdiff(year, date_of_birth, curdate()) between 18 and 50 ) and address in ('Da Nang', 'Quang Tri'); 
 
 -- 4.	Đếm xem tương ứng với mỗi khách hàng đã từng đặt phòng bao nhiêu lần. Kết quả hiển thị được 
 -- sắp xếp tăng dần theo số lần đặt phòng của khách hàng. Chỉ đếm những khách hàng nào có Tên loại khách hàng là “Diamond”.
@@ -260,20 +260,57 @@ select Services.service_id, Services.service_name, Services.area_using, Services
 from Services
 	inner join Servicetype on Services.service_type_id=Servicetype.service_type_id
     left join contracts on Services.service_id=contracts.service_id
-where contracts.date_started < '2019-01-01';
+where contracts.date_started not in (
+	select contracts.date_started
+    from contracts
+    where (date_started between '2019-01-01' and '2019-03-31')
+)
+order by service_id;
 
 -- Task 7. Hiển thị thông tin IDDichVu, TenDichVu, DienTich, SoNguoiToiDa, ChiPhiThue, 
 -- TenLoaiDichVu của tất cả các loại dịch vụ đã từng được Khách hàng đặt 
 -- phòng trong năm 2018 nhưng chưa từng được Khách hàng đặt phòng trong năm 2019.
 
-select Services.service_id, Services.service_name, Services.area_using, Services.max_of_customer, Services.rental_fee, Servicetype.service_type_name, contracts.date_started
-from Services
-	inner join Servicetype on Services.service_type_id=Servicetype.service_type_id
-    left join contracts on Services.service_id= contracts.service_id
-where year(contracts.date_started) = 2018 and Services.service_id not in (
-	select service_id
+select services.service_id, services.service_name, services.area_using, services.max_of_customer, services.rental_fee, servicetype.service_type_name, contracts.date_started
+from services
+	inner join servicetype on services.service_type_id=servicetype.service_type_id
+    left join contracts on services.service_id= contracts.service_id
+where services.service_id in (
+	select distinct  contracts.service_id
     from contracts
-    where year(contracts.date_started)=2019
+    where year(date_started)=2018
+) and services.service_id not in (
+	select distinct contracts.service_id
+	from contracts
+	where year(date_started) = 2019
 )
 order by service_id;
+
+-- 8. Hiển thị thông tin HoTenKhachHang có trong hệ thống, với yêu cầu HoThenKhachHang không trùng nhau. 
+-- Học viên sử dụng theo 3 cách khác nhau để thực hiện yêu cầu trên
+-- firt way
+
+select  distinct full_name
+from customers;
+
+-- second way
+select *
+from customers
+group by full_name;
+
+-- third way
+
+-- 9. Thực hiện thống kê doanh thu theo tháng, nghĩa là tương ứng với mỗi tháng trong năm 2019 thì sẽ có bao nhiêu khách hàng thực hiện đặt phòng.
+
+
+
+
+
+-- 10. Hiển thị thông tin tương ứng với từng Hợp đồng thì đã sử dụng bao nhiêu Dịch vụ đi kèm. Kết quả hiển thị bao gồm IDHopDong, NgayLamHopDong, NgayKetthuc, TienDatCoc,
+-- SoLuongDichVuDiKem (được tính dựa trên việc count các IDHopDongChiTiet).
+-- 11. Hiển thị thông tin các Dịch vụ đi kèm đã được sử dụng bởi những Khách hàng có TenLoaiKhachHang là “Diamond” và có địa chỉ là “Vinh” hoặc “Quảng Ngãi”.
+-- 12. Hiển thị thông tin IDHopDong, TenNhanVien, TenKhachHang, SoDienThoaiKhachHang, TenDichVu, SoLuongDichVuDikem (được tính dựa trên tổng Hợp đồng chi tiết), TienDatCoc của tất cả các dịch vụ đã từng được khách hàng đặt vào 3 
+-- tháng cuối năm 2019 nhưng chưa từng được khách hàng đặt vào 6 tháng đầu năm 2019.
+-- 13. Hiển thị thông tin các Dịch vụ đi kèm được sử dụng nhiều nhất bởi các Khách hàng đã đặt phòng. (Lưu ý là có thể có nhiều dịch vụ có số lần sử dụng nhiều như nhau).
+-- 14. Hiển thị thông tin tất cả các Dịch vụ đi kèm chỉ mới được sử dụng một lần duy nhất. Thông tin hiển thị bao gồm IDHopDong, TenLoaiDichVu, TenDichVuDiKem, SoLanSuDung.
 
