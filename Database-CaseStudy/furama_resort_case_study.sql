@@ -237,6 +237,24 @@ insert into ContractDetail( contract_id, accompanied_service_id, amount)
 	(11, 5, 3 ),
 	(9, 2, 1 ),
 	(12, 3, 1 );
+insert into ContractDetail( contract_id, accompanied_service_id, amount)
+ value
+	(10, 1, 1 ),
+	(10, 2, 2 ),
+	(10, 3, 3 ),
+	(11, 4, 2 ),
+	(11, 5, 3 ),
+	(9,2, 1 ),
+	(12, 3, 1 ),
+	(12, 3, 2 ),
+	(12, 3, 3 ),
+	(12, 3, 2 ),
+	(12, 3, 1 ),
+	(12, 3, 2 ),
+	(12, 3, 3 ),
+	(12, 3, 4 ),
+	(12, 3, 1 ),
+	(12, 3, 1 );
 -- Task 2.	Hiển thị thông tin của tất cả nhân viên có trong hệ thống có tên bắt đầu là một trong các ký tự “H”, “T” hoặc “K” và có tối đa 15 ký tự.
 select *
 from employees
@@ -276,12 +294,28 @@ where
 group by  customer_id
 ORDER BY noOfBooked;
 
--- Task 5. Hiển thị IDKhachHang, HoTen, TenLoaiKhach, IDHopDong, TenDichVu, NgayLamHopDong, NgayKetThuc,
+-- 5. Hiển thị IDKhachHang, HoTen, TenLoaiKhach, IDHopDong, TenDichVu, NgayLamHopDong, NgayKetThuc,
 -- TongTien (Với TongTien được tính theo công thức như sau: ChiPhiThue + SoLuong*Gia, với SoLuong
 -- và Giá là từ bảng DichVuDiKem) cho tất cả các Khách hàng đã từng đặt phỏng. (Những Khách hàng 
 --  nào chưa từng đặt phòng cũng phải hiển thị ra).
 
--- Task 6. Hiển thị IDDichVu, TenDichVu, DienTich, ChiPhiThue, TenLoaiDichVu của tất cả các loại Dịch vụ chưa 
+select customers.customer_id, customers.full_name, customertype.customer_type_name, services.service_name, contracts.date_started,
+		contracts.date_finished,
+case when contracts.contract_id in (
+	select contract_id
+    from contractdetail
+) then services.rental_fee	+	sum(contractdetail.amount*accompaniedservice.price)
+else services.rental_fee
+end as total_fee
+from customers
+	left join customertype on customertype.customer_type_id=customers.customer_type_id
+    left join contracts on customers.customer_id= contracts.customer_id
+    left join services on services.service_id  =contracts.service_id
+    left join contractdetail on contracts.contract_id=contractdetail.contract_id
+    left join accompaniedservice on accompaniedservice.accompanied_service_id= contractdetail.accompanied_service_id
+group by contracts.contract_id;
+
+-- 6. Hiển thị IDDichVu, TenDichVu, DienTich, ChiPhiThue, TenLoaiDichVu của tất cả các loại Dịch vụ chưa 
 -- từng được Khách hàng thực hiện đặt từ quý 1 của năm 2019 (Quý 1 là tháng 1, 2, 3).
 
 select Services.service_id, Services.service_name, Services.area_using, Services.rental_fee, Servicetype.service_type_name, contracts.date_started
@@ -295,7 +329,7 @@ where contracts.date_started not in (
 )
 order by service_id;
 
--- Task 7. Hiển thị thông tin IDDichVu, TenDichVu, DienTich, SoNguoiToiDa, ChiPhiThue, 
+-- 7. Hiển thị thông tin IDDichVu, TenDichVu, DienTich, SoNguoiToiDa, ChiPhiThue, 
 -- TenLoaiDichVu của tất cả các loại dịch vụ đã từng được Khách hàng đặt 
 -- phòng trong năm 2018 nhưng chưa từng được Khách hàng đặt phòng trong năm 2019.
 
@@ -428,22 +462,6 @@ from employees
 group by accompaniedservice.accompanied_service_id) as nou);
 
 select @min_of_use;
--- select @max_of_use;
--- SELECT *
--- FROM extra_services
--- WHERE extra_service_id IN (SELECT
--- 	extra_service_id FROM (SELECT
--- 	es.extra_service_id, COUNT(es.extra_service_id) AS number_of_use
--- 	FROM employees e
--- 	INNER JOIN agreements a ON a.employee_id = e.employee_id
---     INNER JOIN customers c ON c.customer_id = a.customer_id
---     INNER JOIN services s ON s.service_id= a.service_id
---     INNER JOIN detailed_agreements da ON da.agreement_id = a.agreement_id
---     INNER JOIN extra_services es ON es.extra_service_id= da.extra_service_id
--- 	GROUP BY es.extra_service_id
--- 	) as nou
---     where nou.number_of_use = @max_of_use
--- );
 
 select contracts.contract_id, accompaniedservice.accompanied_service_name, count(accompaniedservice.accompanied_service_id)as noOfUsing
 from employees
@@ -467,6 +485,18 @@ group by accompaniedservice.accompanied_service_id
 having noOfUsing= @min_of_use
 order by noOfUsing;
 
+-- other way
+select accompaniedservice.accompanied_service_id, accompaniedservice.accompanied_service_name, count(contractdetail.accompanied_service_id) as noOfBooking
+from contractdetail
+	inner join accompaniedservice on accompaniedservice.accompanied_service_id=contractdetail.accompanied_service_id
+group by contractdetail.accompanied_service_id
+having count(contractdetail.accompanied_service_id) =(select max(amount)
+	from (select 
+			count(accompanied_service_id) as noOfBooking
+            from contractdetail
+            group by accompanied_service_id) as noOfUseAccompanied
+);
+
 -- 14. Hiển thị thông tin tất cả các Dịch vụ đi kèm chỉ mới được sử dụng một lần duy nhất. Thông tin hiển thị bao gồm IDHopDong, TenLoaiDichVu, TenDichVuDiKem, SoLanSuDung.
 select contracts.contract_id, accompaniedservice.accompanied_service_name, count(accompaniedservice.accompanied_service_id)as noOfUsing
 from employees
@@ -478,3 +508,85 @@ from employees
 group by accompaniedservice.accompanied_service_id
 having noOfUsing=1
 order by noOfUsing;
+
+--  15
+-- Hiển thi thông tin của tất cả nhân viên bao gồm IDNhanVien, HoTen, TrinhDo, TenBoPhan,
+-- SoDienThoai, DiaChi mới chỉ lập được tối đa 3 hợp đồng từ năm 2018 đến 2019
+
+select employees.employee_id, employees.full_name, positions.position_name, department.department_name, employees.phone_number, employees.address, count(contracts.contract_id) as noOfContracts
+from employees
+	left join contracts on employees.employee_id=contracts.employee_id
+    inner join positions on positions.position_id=employees.position_id
+    inner join department on department.department_id=employees.department_id
+where year(date_started) between 2018 and 2019
+group by contracts.employee_id
+having noOfContracts <=3;
+
+-- 16.
+-- Xóa những Nhân viên chưa từng lập được hợp đồng nào từ năm 2017 đến năm 2019
+
+select *
+from employees;
+delete
+from employees
+where employee_id not in (
+	select employee_id
+	from contracts
+    where year(date_started) between 2017 and 2019
+);
+
+--  17.
+-- Cập nhật thông tin những khách hàng có TenLoaiKhachHang từ Platinium lên Diamond, chỉ cập nhật
+-- những khách hàng đã từng đặt phòng với tổng Tiền thanh toán trong năm 2019 là lớn hơn 10.000.000 VNĐ/500$
+
+select *
+from customertype;
+update customers
+set customer_type_id=(
+	select customer_type_id
+    from customertype
+    where customer_type_name='Diamond'
+);
+select *
+from customers
+where customer_type_id = (
+	select customer_type_id
+    from customertype
+    where customer_type_name='Platinium'
+)
+and customer_type_id in (
+	select customer_id
+    from contracts 
+    group by customer_id
+    having sum(total_payment) >10000000
+);
+
+-- 18. Xóa những khách hàng có hợp đồng trước năm 2016 (chú ý ràng buộc giữa các bảng)
+
+delete 
+from customers
+where customer_id in (
+	select customer_id
+    from contracts
+    where year(date_started) <2016
+);
+
+-- 19. Cập nhật giá cho các Dịch vụ đi kèm được sử dụng trên 10 lần trong năm 2019 lên gấp đôi
+
+update accompaniedservice
+set price= price*2
+where accompanied_service_id in (
+	select accompanied_service_id
+    from contractdetail
+		inner join contracts on contracts.contract_id=contractdetail.contract_id
+    group by contractdetail.accompanied_service_id
+    having count(accompanied_service_id)>10
+);
+
+-- 20. Hiển thị thông tin của tất cả các Nhân viên và Khách hàng có trong hệ thống,
+-- thông tin hiển thị bao gồm ID (IDNhanVien, IDKhachHang), HoTen, Email, SoDienThoai, NgaySinh, DiaChi.
+
+select employee_id as id, full_name, email, phone_number, date_of_birth, address
+from employees
+union all select customer_id as id, full_name, email, phone_number, date_of_birth, address
+from customers;
