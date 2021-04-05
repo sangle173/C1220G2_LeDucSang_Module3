@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        body{
+            font-family: Tahoma;
+            font-size: 16px;
+        }
+        #menu{
+            width: 100px;
+            height: 400px;
+            background: red;
+            margin: 0px auto;
+            margin-top: 50px;
+        }
+        ul.root > li{
+           list-style-type: none;
+        }
+        ul.root>li> a{
+            text-decoration: none;
+            color: white;
+            padding: 0 15px 0 15px;
+            line-height: 40px;
+            display: block;
+        }
+        ul.root >li > a:hover{
+            background: olivedrab;
+            color: black;
+        }
+        ul.sub_menu {
+            width: 250px;
+            background: red;
+            min-height: 150px;
+            display: none;
+        }
+        ul.sub_menu li{
+            list-style-type: none;
+
+        }
+        ul.sub_menu li a{
+            text-decoration: none;
+            color: white;
+            padding: 0 15px 0 15px;
+            line-height: 40px;
+            display: block;
+            border-bottom: 1px solid white;
+            text-indent: 10px;
+        }
+        ul.sub_menu li a:hover{
+            background: olivedrab;
+            color: black;
+        }
+        ul.root > li:hover ul.sub_menu{
+            display: block;
+        }
+    </style>
+</head>
+<body>
+<div id="menu">
+    <ul class="root">
+        <li><a href="#">Menu 1</a></li>
+        <li><a href="#">Menu 2</a></li>
+        <li><a href="#">Menu 3</a>
+            <ul class="sub_menu">
+                <li><a href="#">Menu 1</a></li>
+                <li><a href="#">Menu 2</a></li>
+                <li><a href="#">Menu 3</a>
+            </ul>
+        </li>
+        <li><a href="#">Menu 4</a></li>
+        <li><a href="#">Menu 5</a></li>
+        <li><a href="#">Menu 6</a></li>
+        <li><a href="#">Menu 7</a></li>
+    </ul>
+</div>
+</body>
+</html>
