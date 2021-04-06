@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            transition: all 0.3s;
+        }
+        #main_nav{
+            padding: 10px;
+            margin: 10px;
+        }
+        #main_nav ul{
+            background: #3B5998;
+            list-style: none;
+            padding: 0px;
+            width: 200px;
+            text-align: left;
+        }
+        #main_nav ul li{
+            position: relative;
+            width: 200px;
+            height: 40px;
+            line-height: 40px;
+            border-bottom: 1px solid #fff;
+        }
+        #main_nav ul .thefirst{
+            background: #1D1F20;
+        }
+        #main_nav ul li a{
+            text-decoration: none;
+            color: #fff;
+            font-weight: bold;
+            padding: 0 16px;
+            display: block;
+        }
+        #main_nav li:hover{
+            background: #17306E;
+        }
+        #main_nav .sub-menu{
+            position: absolute;
+            left: 200px;
+            top: 0px;
+            width: 200px;
+            display: none;
+            text-align: left;
+            border-left: 1px solid #fff;
+            font-size: 90%;
+            border-radius: 0px 10px 10px 0px;
+        }
+        #main_nav li:hover .sub-menu{
+            display: block;
+            background: #3B5998;
+            color: red;
+        }
+        #main_nav .sub-menu2{
+            position: absolute;
+            left: 200px;
+            top: 0;
+            width: 200px;
+            border-left: 1px solid #fff;
+            border-radius: 0px 10px 10px 0px;
+            display: none;
+        }
+        #main_nav .sub-menu li:hover .sub-menu2{
+            display: block;
+        }
+        #main_nav .sub-menu3{
+            position: absolute;
+            left: 200px;
+            top: 0;
+            width: 200px;
+            border-left: 1px solid #fff;
+            border-radius: 0px 10px 10px 0px;
+            display: none;
+        }
+        #main_nav .sub-menu2 li:hover .sub-menu3{
+            display: block;
+        }
+    </style>
+</head>
+<body>
+<div id="main_nav">
+    <ul>
+        <li class="thefirst"><a href="#">Chuyen muc</a>
+            <ul class="sub-menu">
+                <li><a href="#">Video huong dan</a></li>
+                <li><a href="#">Wordpress</a>
+                    <ul class="sub-menu2">
+                        <li><a href="#">item 1</a></li>
+                        <li><a href="#">item 2</a></li>
+                        <li><a href="#">item 3</a></li>
+                    </ul>
+                </li>
+                <li><a href="#">Hosting-Domain</a></li>
+                <li><a href="#">SEO</a></li>
+                <li><a href="#">Tai nguyen</a></li>
+                <li><a href="#">Ma nguon mo</a></li>
+                <li><a href="#">Web development</a></li>
+                <li><a href="#">Cong cu</a>
+                    <ul class="sub-menu2">
+                        <li><a href="#"> item 1</a></li>
+                        <li><a href="#"> item 2</a>
+                            <ul class="sub-menu3">
+                                <li><a href="#">item 1.a</a></li>
+                                <li><a href="#">item 2.a</a></li>
+                                <li><a href="#">item 3.a</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="#">item 3</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </li>
+        <li><a href="#">Tai nguyen</a></li>
+        <li><a href="#">Danh gia</a></li>
+        <li><a href="#">Ma giam gia</a></li>
+        <li><a href="#">Hoi dap</a></li>
+        <li><a href="#">Bat dau</a></li>
+    </ul>
+</div>
+</body>
+</html>
