@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="js/style.js">
+    <link rel="shortcut icon" type="image/png" href="img/web.png"/>
+    <style>
+        header {
+            position: relative;
+        }
+
+        .shopping-mall {
+            margin-top: auto;
+            font-variant: small-caps;
+        }
+
+        .shopping-mall > h1 {
+            font-family: Impact;
+            font-size: 50px;
+            color: white;
+            letter-spacing: 0.3px;
+            text-shadow: 0 0 2px black;
+            padding-bottom: 0px;
+            border-bottom: 1px dotted gray;
+            margin: 0px;
+            width: 49%;
+        }
+
+        .shopping-mall > h5 {
+            margin-top: 5px;
+            letter-spacing: 0.5px;
+            font-size: small;
+        }
+
+        .poly-cart {
+            margin-top: 5px;
+        }
+
+        .poly-cart ul {
+            padding: 0px;
+            margin: 0px;
+            list-style: none;
+            font-variant: small-caps;
+        }
+
+        .poly-cart .panel-heading strong {
+            font-variant: small-caps;
+            font-size: larger;
+            text-shadow: 0 0 2px darkgray;
+        }
+
+        .poly-prod {
+            text-align: center;
+            padding: 5px;
+        }
+
+        .poly-prod .panel-body img {
+            height: 150px;
+            max-width: 95%;
+        }
+
+        .card-title {
+            margin-top: 0;
+            margin-bottom: 0;
+            font-size: 16px;
+            color: inherit;
+        }
+
+        a.list-group-item, button.list-group-item {
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+<div class="container" style="height: auto">
+    <header class="row">
+        <div class="col-sm-8 shopping-mall">
+            <h1>Online shopping mall</h1>
+            <h5>The center point of the professional programming</h5>
+        </div>
+        <img class="col-sm-4" src="img/header_img.png"/>
+    </header>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">Navbar</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Link</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Dropdown
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="#">Action</a>
+                        <a class="dropdown-item" href="#">Another action</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="#">Something else here</a>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link disabled" href="#">Disabled</a>
+                </li>
+            </ul>
+            <form class="form-inline my-2 my-lg-0">
+                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+            </form>
+        </div>
+    </nav>
+    <div class="row">
+        <article class="col-sm-9">
+            <div class="col-sm-3 poly-prod">
+                <div class="card card-default">
+                    <div class="card-header">
+                        <h4 class="card-title">
+                            Laptop LG Gram 14ZD90N
+                        </h4>
+                    </div>
+                    <div class="card-body">
+                        <img src="img/lg_gram.png" height="180" width="200" /></div>
+                    <div class="card-footer">
+                        26.489.000 đ (Tiết kiệm 4.000.000 đ) [Giá đã có VAT]
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-3 poly-prod">
+                <div class="card card-default">
+                    <div class="card-header">
+                        <h4 class="card-title">
+                            PC GAMING LION 009
+                        </h4>
+                    </div>
+                    <div class="card-body">
+                        <img src="img/pc_gaming.jpg" height="180" width="200" /></div>
+                    <div class="card-footer">
+                        11.199.000 đ (Tiết kiệm 1.800.000 đ) [Giá đã có VAT]
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-3 poly-prod">
+                <div class="card card-default">
+                    <div class="card-header">
+                        <h4 class="card-title">
+                            Laptop LG Gram 14ZD90N
+                        </h4>
+                    </div>
+                    <div class="card-body">
+                        <img src="img/lg_gram.png" height="180" width="200" /></div>
+                    <div class="card-footer">
+                        26.489.000 đ (Tiết kiệm 4.000.000 đ) [Giá đã có VAT]
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-3 poly-prod">
+                <div class="card card-default">
+                    <div class="card-header">
+                        <h4 class="card-title">
+                            Laptop LG Gram 14ZD90N
+                        </h4>
+                    </div>
+                    <div class="card-body">
+                        <img src="img/lg_gram.png" height="180" width="200" /></div>
+                    <div class="card-footer">
+                        26.489.000 đ (Tiết kiệm 4.000.000 đ) [Giá đã có VAT]
+                    </div>
+                </div>
+            </div>
+        </article>
+        <aside class="col-sm-3">
+            <div class="poly-cart">
+                <div class="card">
+                    <div class="card-body">
+                        <img class="col-sm-5" src="img/cart_cow.jfif"/>
+                        <ul class="col-sm-7">
+                            <li>100 items</li>
+                            <li>$56.8</li>
+                            <li><a href="#">Xem giỏ hàng</a></li>
+                        </ul>
+                    </div>
+                    <div class="card card-default">
+                        <div class="card-body">
+                            <form>
+                                <input placeholder="Keywords" class="form-control" />
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                </div>
+            <div class="card">
+                <div class="card-header">
+                    <span class="glyphicon glyphicon-th-list"></span>
+                    <strong>Chủng Loại</strong>
+                </div>
+                <div class="list-group">
+                    <a href="#" class="list-group-item">Điện thoại di động</a>
+                    <a href="#" class="list-group-item">Máy tính xách tay</a>
+                    <a href="#" class="list-group-item">Máy tính để bàn</a>
+                    <a href="#" class="list-group-item">Quạt máy</a>
+                    <a href="#" class="list-group-item">Tivi</a>
+                    <a href="#" class="list-group-item">Tủ lạnh</a>
+                </div>
+            </div>
+        </aside>
+    </div>
+    <footer class="card">
+        <div class="card-header text-center">
+            <p>CodeGym &copy; 2017</p>
+        </div>
+    </footer>
+</div>
+
+
+<script src="js/jquery-3.6.0.min.js"></script>
+<script src="js/bootstrap.min.js">
+</script>
+</body>
+</html>
