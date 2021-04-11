@@ -11,7 +11,7 @@
     <title>Title</title>
 </head>
 <body>
-<h1>${u}</h1>
-<h1>${p}</h1>
+<h1>${sessionScope.username}</h1>
+<h1>${sessionScope.password}</h1>
 </body>
 </html>
