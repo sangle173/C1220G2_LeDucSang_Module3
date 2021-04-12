@@ -1,4 +1,6 @@
-package model;
+package model.dao;
+
+import model.User;
 
 import java.sql.SQLException;
 import java.util.List;
@@ -8,7 +10,7 @@ public interface IUserDAO {
 
     User selectUser(int id);
 
-    List<User> selectAllUser();
+    List<User> selectAllUsers();
 
     boolean deleteUser(int id) throws SQLException;
 
