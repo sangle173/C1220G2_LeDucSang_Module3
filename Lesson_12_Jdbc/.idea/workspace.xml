@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="ea95a4ec-f3fe-4950-bd93-209c6f26b1b8" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/../Demo/Demo.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Demo/src/DemoServlet.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Demo/web/result.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Lesson_11_MVC/exercises_customer_manager/exercises_customer_manager.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Lesson_11_MVC/exercises_customer_manager/src/model/bean/Customer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Lesson_11_MVC/exercises_customer_manager/src/model/service/CustomerService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Lesson_11_MVC/exercises_customer_manager/src/model/service/CustomerServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/practises_1/.idea/uiDesigner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/practises_1/src/config/CharsetFilter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/practises_1/src/controller/UserServlet.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/practises_1/src/model/bean/User.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/practises_1/src/model/repository/IUserDAO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/practises_1/src/model/repository/UserDAO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/practises_1/web/user/create.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/practises_1/web/user/list.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Lesson_12_MVC/exercises/exercises.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Lesson_9_Web_Basic/.idea/libraries/jstl_1_2.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lesson_11_MVC/practises_customer_management/out/artifacts/practises_customer_management_war_exploded/customer/delete.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/../Lesson_11_MVC/practises_customer_management/out/artifacts/practises_customer_management_war_exploded/customer/delete.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lesson_11_MVC/practises_customer_management/out/artifacts/practises_customer_management_war_exploded/customer/list.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/../Lesson_11_MVC/practises_customer_management/out/artifacts/practises_customer_management_war_exploded/customer/list.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lesson_11_MVC/practises_customer_management/web/customer/list.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/../Lesson_11_MVC/practises_customer_management/web/customer/list.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/practises_user_manager_by_jdbc/out/production/practises_user_manager_by_jdbc/ConnectMysqlExample.class" beforeDir="false" afterPath="$PROJECT_DIR$/practises_user_manager_by_jdbc/out/production/practises_user_manager_by_jdbc/ConnectMysqlExample.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/practises_user_manager_by_jdbc/practises_user_manager_by_jdbc.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/practises_user_manager_by_jdbc/src/ConnectMysqlExample.java" beforeDir="false" afterPath="$PROJECT_DIR$/practises_user_manager_by_jdbc/src/ConnectMysqlExample.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Lesson_9_Web_Basic/Lesson_9_Web_Basic.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../Lesson_9_Web_Basic/Lesson_9_Web_Basic.iml" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="ProjectId" id="1r7d3ptOi0ruKzI6UA5yqBJzy5S" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/practises_1" />
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="ea95a4ec-f3fe-4950-bd93-209c6f26b1b8" name="Default Changelist" comment="" />
+      <created>1618330865176</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1618330865176</updated>
+      <workItem from="1618330866489" duration="60000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="2" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="414" y="174" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1618330914484">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="414" y="174" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1618330914484" />
+    <state x="740" y="274" key="FileChooserDialogImpl" timestamp="1618330925373">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="740" y="274" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1618330925373" />
+  </component>
+</project>
